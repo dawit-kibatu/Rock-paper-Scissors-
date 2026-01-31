@@ -20,14 +20,20 @@ function getComputerChoice(){
     return computerChoice;
 }
 function getHumanChoice(){
-let humanChoice=prompt("choose my guy")
+let humanChoice=prompt("choose my guy");
 humanChoice=humanChoice.toLowerCase()
 if (humanChoice =="rock" || humanChoice=="paper" || humanChoice=="scissors"){
     console.log(humanChoice)
 }
 else{
-    console.log("no you can't do that")
-    humanChoice="0";
+    while(true){
+        humanChoice=prompt("choose my guy");
+        humanChoice=humanChoice.toLowerCase()
+        if (humanChoice =="rock" || humanChoice=="paper" || humanChoice=="scissors"){
+            console.log(humanChoice)
+            break;
+}
+    }
 }
 return humanChoice
 }

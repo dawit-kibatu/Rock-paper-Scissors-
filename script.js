@@ -33,6 +33,7 @@ return humanChoice
 }
 let humanScore=0;
 let computerScore=0;
+let round=0;
 function playRound(humanChoice,computerChoice){
     if( humanChoice==computerChoice){
         console.log("Draw");
@@ -54,5 +55,15 @@ function playRound(humanChoice,computerChoice){
         computerScore++;
     }
 }
-let humanSelection=getHumanChoice()
+
+function playGame(){
+while(round<5){
+ let humanSelection=getHumanChoice()
 let computerSelection=getComputerChoice()
+    playRound(humanSelection,computerSelection)
+    round++;
+}
+console.log(humanScore)
+console.log(computerScore)
+}
+playGame()

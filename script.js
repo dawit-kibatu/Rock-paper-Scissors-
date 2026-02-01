@@ -19,28 +19,10 @@ function getComputerChoice(){
     }
     return computerChoice;
 }
-function getHumanChoice(){
-let humanChoice=prompt("choose my guy");
-humanChoice=humanChoice.toLowerCase()
-if (humanChoice =="rock" || humanChoice=="paper" || humanChoice=="scissors"){
-    console.log(humanChoice)
-}
-else{
-    while(true){
-        humanChoice=prompt("choose my guy");
-        humanChoice=humanChoice.toLowerCase()
-        if (humanChoice =="rock" || humanChoice=="paper" || humanChoice=="scissors"){
-            console.log(humanChoice)
-            break;
-}
-    }
-}
-return humanChoice
-}
 let humanScore=0;
 let computerScore=0;
 let round=0;
-function playRound(humanChoice,computerChoice){
+function playGame(humanChoice,computerChoice){
     if( humanChoice==computerChoice){
         console.log("Draw");
     }
@@ -61,15 +43,43 @@ function playRound(humanChoice,computerChoice){
         computerScore++;
     }
 }
+let body=document.querySelector('body')
+const rockButton=document.createElement('button');
+const paperButton=document.createElement('button')
+const scissorsButton=document.createElement('button')
+rockButton.setAttribute('id',"rock");
+paperButton.setAttribute('id',"paper");
+scissorsButton.setAttribute('id',"scissors");
+rockButton.textContent="rock"
+paperButton.textContent="paper"
+scissorsButton.textContent="scissors"
+let humanChoice=''
 
-function playGame(){
-while(round<5){
- let humanSelection=getHumanChoice()
-let computerSelection=getComputerChoice()
-    playRound(humanSelection,computerSelection)
-    round++;
+body.appendChild(rockButton)
+body.appendChild(paperButton)
+body.appendChild(scissorsButton)
+const buttons=document.querySelectorAll('button')
+function handleClick(event){
+    humanChoice=event.target.id
+    console.log(humanChoice)
+    let computerSelection=getComputerChoice()
+    playGame(humanChoice,computerSelection)
+    checkPoints(humanScore,computerScore)
 }
-console.log(humanScore)
-console.log(computerScore)
+rockButton.addEventListener('click',handleClick)
+paperButton.addEventListener("click",handleClick)
+scissorsButton.addEventListener("click",handleClick)
+function checkPoints(humanScore,computerScore){
+    if(humanScore==5){
+    rockButton.removeEventListener('click',handleClick)
+    paperButton.removeEventListener('click',handleClick)
+    scissorsButton.removeEventListener('click',handleClick)
+    console.log('human wins')
 }
-playGame()
+else if(computerScore==5){
+     rockButton.removeEventListener('click',handleClick)
+    paperButton.removeEventListener('click',handleClick)
+    scissorsButton.removeEventListener('click',handleClick)
+    console.log('computer wins')
+}
+}
